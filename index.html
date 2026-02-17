@@ -1,0 +1,463 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Web🕸</title>
+    <link rel="website icon" type="png" id="fav" href="D:\laptop data\WEB\logo.png">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-icons/1.10.5/font/bootstrap-icons.min.css" rel="stylesheet">
+</head>
+<body>
+  <div class="main-wrapper">
+        <div id="links-container">
+          <i class="bi bi-envelope-at"></i>
+          <a id="gmail" href="https://gmail.com"><strong>Gmail</strong></a>
+          <i class="bi bi-youtube" style="color: red;"></i>
+          <a id="Youtube" href="http://www.youtube.com"><strong>YouTube</strong></a>
+        </div>
+
+        <div class="main-container">
+          <div class="clock" id="clock"></div>
+          <div class="calendar-container">
+            <div class="c-box">
+              <div class="month-year" id="monthYear"></div>
+              <div class="calendar" id="calendar"></div> 
+            </div>
+            <img src="dp.jpg" style="height: 100px; width: 100px;"/>
+          </div>            
+        </div>
+
+            <div class="social-buttons">
+              
+              <a href="https://www.youtube.com" class="social-button social-button--youtube" aria-label="YouTube">
+                <i class="bi bi-youtube"></i>
+              </a>
+              <a href="https://www.chatgpt.com/" class="social-button social-button--chat" aria-label="ChatGPT">
+                <i class="bi bi-filetype-ai"></i>
+              </a>
+              <a href="https://www.daraz.com.bd" class="social-button social-button--daraz" area-label="daraz">
+                <i class="bi bi-cart"></i>
+              </a>
+              
+            </div>
+
+          <div id="search-container" style="margin-top: 5%;">
+          <div id="search-input-container">
+            <img src="https://assets.codepen.io/1468070/Google+G+Icon.png" alt="" />
+            <input type="text" placeholder="Search anything" id="search" onClick="search_func()" autocomplete="off"/>
+          </div>
+
+          <button id="image-button" onclick="googleSearch();" type="button">
+            <i class="bi bi-search" style="font-weight: 700;"></i>
+          </button>   
+      
+          </div>
+  </div>
+  <style>
+  :root {
+    --body-color: 0 0 0;
+    
+    --font-color: 255 255 255;
+    --highlight-color: 0 0 0;
+    
+    --theme-background: 20 20 20;
+    
+    --theme-light: 0 0 0;
+    --theme-medium: 0 0 0;
+    --theme-dark: 0 0 0;
+  }
+  #gmail{
+    text-shadow: #ccc;
+  }
+  #youtube{
+    text-shadow: #c12127;
+    
+  }
+  body {
+    height: 100vh;
+    background-image: url(bmw.jpg);
+    background-size: cover;
+    background-position:center;   
+    background-repeat:no-repeat;  
+    background-attachment:fixed;  
+    margin: 0px;
+  }
+  * {
+    box-sizing: border-box;
+  }
+  
+  h1, h2, h3, h4, input, select, button, span, a, p {
+    color: rgb(var(--font-color));
+    font-family: "Noto Sans", sans-serif;
+    font-size: 1rem;
+    font-weight: 400;
+    margin: 0px;
+  }
+  
+  button, a, input {  
+    outline: none;
+  }
+  
+  .main-wrapper {
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    flex-wrap: wrap;
+  }
+
+  #links-container {
+    width: 100%;
+    color: snow;
+    display: flex;
+    justify-content: flex-end;
+    align-items: center;
+    gap: 0.15rem;
+    position: fixed;
+    top: 5px;
+  }
+  #links-container > a {
+    color: rgb(255 255 255 / 80%);
+    font-size: 0.75rem;
+    text-decoration-thickness: 5px;
+  }
+  #links-container > i{
+    font-size: 25px;
+  }
+  .calendar-container img {
+    background: linear-gradient(
+    45deg,rgba(255, 255, 255, 0.26) 0%,rgba(85, 80, 80, 0.25) 50%,rgba(107, 99, 99, 0.26) 100%);
+    border: 1px solid rgba(255,255,255,0.2);
+    height: 47%;
+    position: relative;
+    right: 150px; bottom: 250px;
+    padding: 10px;
+    border: none;
+    border-radius: 100%;
+  }
+  
+  .main-container{
+    height: auto;
+    min-height: fit-content;
+    width: 100%;
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+    padding: 5px;
+    overflow: hidden;
+    position: absolute;
+    top: 10%;
+  }
+  .clock{
+    background: linear-gradient(
+    45deg,rgba(255, 255, 255, 0.26) 0%,rgba(85, 80, 80, 0.25) 50%,rgba(107, 99, 99, 0.26) 100%);
+    border: 1px solid rgba(255,255,255,0.2);
+    border-radius: 10px;
+    min-height: 50px; min-width: 250px;
+    text-align: center; align-content: center;
+    color: snow;
+    font-size: 30px; font-weight: 600;
+    font-family: 'Courier New', Courier, monospace;
+    position: fixed;
+    right: 20px;
+    top: 10%;
+  }
+  .calendar-container{
+    position: fixed;
+    left: 15%; top: 20%;
+    text-align:center;
+    color: snow;
+  }
+  .c-box{
+    background: linear-gradient(
+    45deg,rgba(255, 255, 255, 0.26) 0%,rgba(85, 80, 80, 0.25) 50%,rgba(107, 99, 99, 0.26) 100%);
+    border: 1px solid rgba(255,255,255,0.2);
+    border-radius: 10px;
+    height: 200px; width: 250px;
+    flex-wrap: wrap;
+    z-index: 2;
+  }
+  .month-year{
+  font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+  font-size:16px;
+  margin-bottom:10px;
+  }
+
+  .calendar{
+  display:grid;
+  grid-template-columns:repeat(7,35px);
+  gap:1px; font-size: 12px;
+  font-family: 'Courier New', Courier, monospace;
+  justify-content:center;
+  text-align: center;
+  z-index: 2;
+  }
+
+  .day-name{
+  font-weight:bold;
+  font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+  opacity:0.9;
+  }
+
+  .date{
+  width:35px;
+  height:35px;
+  }
+
+  .today{
+  background:#00f7ff;
+  color:#000;
+  height: 20px;
+  width: 20px;
+  border-radius:50%;
+  }
+
+  #search-container {
+    display: flex;
+    gap: 0.2rem;
+    margin-top: 100px; 
+    margin-left: 120px; 
+    margin-right: 50px;
+  }
+  
+  #search-input-container > input,
+  #search-container > button {
+    background-color: rgb(255 255 255 / 10%);
+    color: rgb(255 255 255 / 80%);
+    font-size: 1rem;
+    border: none;
+  }
+  
+  #search-input-container:has(input:focus),
+  #search-container > button:focus {
+    background-color: rgb(255 255 255 / 10%);
+  }
+  
+  #search-container > button {
+    width: 3.5rem;
+    border-radius: 0.2rem;
+    cursor: pointer;
+  }
+  
+  #search-container > #image-button {  
+    border-bottom-right-radius: 0.5rem;
+    border: 1px solid rgba(255,255,255,0.2);
+
+  }
+  
+  #search-input-container {
+    display: flex;
+    align-items: center;
+    gap: 0.75rem;
+    background-color: rgb(255 255 255 / 10%);
+    padding-left: 1rem;
+    border: 1px solid rgba(255,255,255,0.2);
+    border-radius: 0.2rem;
+    border-bottom-left-radius: 0.5rem;
+  }
+  
+  #search-input-container > img {
+    height: 1.5rem;
+  }
+  
+  #search-input-container > input {
+    width: 100%;
+    height: 3.25rem;
+    background-color: transparent;
+    padding: 1rem;  
+    padding-left: 0rem;
+  }
+          
+  .social-buttons {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 8px;
+    position: relative;
+    right: 1vh;
+  
+  }
+  .social-button {
+    position: relative;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    outline: none;
+    width: 30px;
+    height: 30px;
+    text-decoration: none;
+    border-radius: 100%;
+    background: #fff;
+    text-align: center;
+  }
+  .social-button::after {
+    content: '';
+    position: absolute;
+    top: -1px;
+    left: 50%;
+    display: block;
+    width: 0;
+    height: 0;
+    border-radius: 100%;
+    transition: 0.3s;
+  }
+  .social-button:focus, .social-button:hover {
+    color: #fff;
+  }
+  .social-button:focus::after, .social-button:hover::after {
+    width: calc(100% + 2px);
+    height: calc(100% + 2px);
+    margin-left: calc(-50% - 1px);
+  }
+  .social-button i, .social-button svg, .social-button img {
+    position: relative;
+    z-index: 1;
+    transition: 0.3s;
+  }
+  .social-button i {
+    font-size: 20px;
+  }
+  .social-button svg {
+    height: 40%;
+    width: 40%;
+  }
+  .social-button img{
+    height: 40%;
+    width: 40%;
+  }
+  .social-button--youtube {
+    color: #ff0000 
+  }
+  .social-button--youtube::after{
+    background:#ff0000;
+  }
+  .social-button--daraz {
+    color: #00ff00;
+  }
+  .social-button--daraz::after {
+    background: #00ff00;
+  }
+  .social-button--chat{
+    color: rgb(119, 0, 255)
+  }
+  .social-button--chat::after{
+    background: rgb(119,0,255) ;
+  }
+
+  /* animated logo effect */
+  
+  a {
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "Roboto", "Droid Sans", "Helvetica Neue", Arial, sans-serif;;
+    font-size: smaller;
+    font-weight: lighter;
+    text-decoration: none;
+    padding: .6rem .8rem;
+    border-radius: .3rem;
+    color: rgba(255, 255, 255, .25);
+    background: rgba(0, 0, 0, 0);
+    transition: all .35s ease-in-out;
+  }
+
+  button {
+    border: none;
+    cursor: pointer;
+    background-color: transparent;
+    outline: none;
+  }
+    
+  .searchContainer {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+  }
+  .box {
+    width: 45%;
+    height: 200px;
+    background-color: #f2f2f2;
+    border: 1px solid #ccc;
+    box-sizing: border-box;
+  }
+
+@media(max-width:900px){
+  #links-container,.heart-rate,#user-menu-button,.txt-ne,.calendar-container{
+    display: none !important; 
+  }
+}
+</style>
+<script>
+    function googleSearch()
+    {
+        var text=document.getElementById("search").value;
+        var cleanQuery = text.replace(" ","+",text);
+        var url='http://www.google.com/search?q='+cleanQuery;
+    
+        window.location.href=url;
+    }
+
+    const input= document.getElementById('search');
+
+  input.addEventListener('keyup',(e) =>{
+    if(e.keyCode === 13) {
+      googleSearch();
+    }
+  })
+
+  function updateClock(){
+  const now = new Date();
+  document.getElementById("clock").textContent =
+    now.toLocaleTimeString();
+}
+
+  setInterval(updateClock,1000);
+  updateClock();
+
+  function generateCalendar(){
+  const cal = document.getElementById("calendar");
+  const monthYear = document.getElementById("monthYear");
+  cal.innerHTML = "";
+
+  const now = new Date();
+  const year = now.getFullYear();
+  const month = now.getMonth();
+  const today = now.getDate();
+
+  const monthNames = [
+    "January","February","March","April","May","June",
+    "July","August","September","October","November","December"
+  ];
+
+  monthYear.textContent = monthNames[month] + " " + year;
+
+  const days = ["Sun","Mon","Tue","Wed","Thu","Fri","Sat"];
+  days.forEach(d=>{
+    const div=document.createElement("div");
+    div.textContent=d;
+    div.classList.add("day-name");
+    cal.appendChild(div);
+  });
+
+  const firstDay = new Date(year,month,1).getDay();
+  const daysInMonth = new Date(year,month+1,0).getDate();
+
+  for(let i=0;i<firstDay;i++){
+    const empty=document.createElement("div");
+    cal.appendChild(empty);
+  }
+
+  for(let d=1; d<=daysInMonth; d++){
+    const div=document.createElement("div");
+    div.textContent=d;
+    div.classList.add("date");
+    if(d===today) div.classList.add("today");
+    cal.appendChild(div);
+  }
+}
+
+  generateCalendar();
+
+    </script>
+
+</body>
+</html>
